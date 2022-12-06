@@ -18,6 +18,9 @@ module.exports = {
     project: './tsconfig.eslint.json',
   },
   plugins: ['@typescript-eslint'],
-  rules: {},
+  rules: {
+    'import/prefer-default-export': 0,
+    'no-param-reassign': 0,
+  },
   root: true,
 };
