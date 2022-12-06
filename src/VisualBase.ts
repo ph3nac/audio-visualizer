@@ -39,7 +39,7 @@ export class VisualBase {
 
   private isStarted = false;
 
-  animeID: number | undefined;
+  private animeID: number | undefined;
 
   constructor(audioContext: AudioContext) {
     this.audioContext = audioContext;
@@ -130,15 +130,18 @@ export class VisualBase {
   private play() {
     if (this.isStarted === false) return;
     if (this.isPlay === true) {
-      this.sampleSource?.stop();
+      // this.sampleSource?.stop();
+      this.audioContext.suspend()!;
       this.isPlay = false;
       cancelAnimationFrame(this.animeID!);
     } else if (this.isPlay === false) {
-      this.sampleSource = new AudioBufferSourceNode(this.audioContext, {
-        buffer: this.dtmf,
-      });
-      this.sampleSource.connect(this.analyser);
-      this.sampleSource.start(this.audioContext.currentTime);
+      // this.sampleSource = new AudioBufferSourceNode(this.audioContext, {
+      //   buffer: this.dtmf,
+      // });
+      // this.sampleSource.connect(this.analyser);
+      // this.sampleSource.start(this.audioContext.currentTime);
+      this.audioContext.resume()!;
+
       this.isPlay = true;
       this.animate();
     }
