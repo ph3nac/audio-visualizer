@@ -17,6 +17,10 @@ export class Audio {
 
   dataArray: Uint8Array;
 
+  isStarted = false;
+
+  isPlay = false;
+
   constructor(audioContext: AudioContext, path: string) {
     this.audioContext = audioContext;
     this.path = path;
@@ -29,6 +33,7 @@ export class Audio {
   }
 
   start = async () => {
+    if (this.isStarted === true) return;
     this.dtmf = await setupSample(this.audioContext, this.path);
     this.sampleSource = new AudioBufferSourceNode(this.audioContext, {
       buffer: this.dtmf,
@@ -36,6 +41,22 @@ export class Audio {
     this.sampleSource.loop = true;
     this.sampleSource.connect(this.analyser);
     this.sampleSource.start();
+    this.isPlay = true;
+    this.isStarted = true;
+    console.log('start');
+  };
+
+  play = (playButton: HTMLElement) => {
+    if (this.isStarted === false) return;
+    if (this.isPlay === true) {
+      this.suspend();
+      this.isPlay = false;
+      playButton.innerText = 'play';
+    } else if (this.isPlay === false) {
+      this.resume();
+      this.isPlay = true;
+      playButton.innerText = 'stop';
+    }
   };
 
   suspend = () => {

@@ -26,6 +26,8 @@ export abstract class Component {
     audio: Audio,
     geometry: THREE.BufferGeometry,
     material: THREE.Material,
+    startButton: HTMLElement,
+    playButton: HTMLElement,
   ) {
     this.audio = audio;
     const width = 400;
@@ -42,37 +44,29 @@ export abstract class Component {
     this.scene.add(this.mesh);
     this.renderer.render(this.scene, this.camera);
 
-    this.startButton = document.getElementById('startButton')!;
-    this.playButton = document.getElementById('playButton')!;
-    this.startButton.addEventListener('click', () => {
-      this.start().catch(() => {});
-    });
+    this.startButton = startButton;
+    this.playButton = playButton;
+    this.startButton.addEventListener('click', this.start);
     this.playButton.addEventListener('click', this.play);
   }
 
   abstract animate: () => void;
 
-  start = async () => {
+  start = () => {
     if (this.isStarted === true) return;
-    await this.audio.start();
     this.animate();
     this.isPlay = true;
     this.isStarted = true;
-    this.playButton.innerText = 'stop';
   };
 
   play = () => {
     if (this.isStarted === false) return;
     if (this.isPlay === true) {
-      this.audio.suspend();
       this.isPlay = false;
-      this.playButton.innerText = 'play';
       cancelAnimationFrame(this.animeID);
     } else if (this.isPlay === false) {
-      this.audio.resume();
       this.isPlay = true;
       this.animate();
-      this.playButton.innerText = 'stop';
     }
   };
 }

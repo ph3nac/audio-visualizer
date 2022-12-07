@@ -3,11 +3,11 @@ import { Component } from '../class/component/Component';
 import { Audio } from '../class/entities/Audio';
 
 export class Model1 extends Component {
-  constructor(audio: Audio) {
+  constructor(audio: Audio, startButton: HTMLElement, playButton: HTMLElement) {
     const geometry = new THREE.BoxGeometry(400, 400, 400);
     const material = new THREE.MeshNormalMaterial();
 
-    super(audio, geometry, material);
+    super(audio, geometry, material, startButton, playButton);
   }
 
   animate = () => {
