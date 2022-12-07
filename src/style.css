@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+div {
+  display: flex;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  display: inline;
+  margin: 10px;
+  background-color: cadetblue;
+  color: white;
+  border-radius: 5px;
+  border: 4px darkgrey outset;
+}
+button:hover {
+  background-color: #4c7e80;
+  /* border: 5px lightgrey outset; */
+}
+button:active {
+  border: lightgrey inset;
+  /* border: 5px darkgrey inset; */
+}
