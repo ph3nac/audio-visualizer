@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { setupSample } from '../../utils/audio';
 
 export class Audio {
@@ -43,7 +44,6 @@ export class Audio {
     this.sampleSource.start();
     this.isPlay = true;
     this.isStarted = true;
-    console.log('start');
   };
 
   play = (playButton: HTMLElement) => {

@@ -1,3 +1,5 @@
+/* eslint-disable no-new */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Audio } from './class/entities/Audio';
 import { Model1 } from './models/model1';
 
@@ -15,6 +17,6 @@ export const init = () => {
     audio.play(playButton);
   });
 
-  const model1 = new Model1(audio, startButton, playButton);
-  const model2 = new Model1(audio, startButton, playButton);
+  new Model1(audio, startButton, playButton);
+  new Model1(audio, startButton, playButton);
 };

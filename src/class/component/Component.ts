@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as THREE from 'three';
 import { Audio } from '../entities/Audio';
 
