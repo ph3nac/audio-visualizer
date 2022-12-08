@@ -1,13 +1,14 @@
 import * as THREE from 'three';
-import { Component } from '../class/component/Component';
+import { Component3D } from '../class/component/Component3D';
 import { Audio } from '../class/entities/Audio';
 
-export class Model1 extends Component {
+export class Model1 extends Component3D {
   constructor(audio: Audio, startButton: HTMLElement, playButton: HTMLElement) {
     const geometry = new THREE.BoxGeometry(400, 400, 400);
     const material = new THREE.MeshNormalMaterial();
+    const mesh = new THREE.Mesh(geometry, material);
 
-    super(audio, geometry, material, startButton, playButton);
+    super(audio, mesh, startButton, playButton);
   }
 
   animate = () => {

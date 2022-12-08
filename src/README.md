@@ -1,1 +1,3 @@
-extends Component and override animate()
+extends Component class and override animate() method
+
+add object implemented Component to init.ts
